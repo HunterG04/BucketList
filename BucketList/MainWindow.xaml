@@ -7,6 +7,29 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <ListView x:Name="bucketListView" Margin="23,28,142,20" ItemsSource="{Binding}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Task" DisplayMemberBinding="{Binding name}" Width="150"/>
+                    <GridViewColumn Header="View" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="View" Click="viewTask" CommandParameter="{Binding}" Width="80"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Complete" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Complete" Click="completeTask" CommandParameter="{Binding}" Width="80"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="addItemButton" Content="Add Item" Margin="0,28,10,0" VerticalAlignment="Top" Height="37" Background="LightGreen" Click="addItemButton_Click" HorizontalAlignment="Right" Width="109" />
+        <Button x:Name="removeItemButton" Content="Remove Item" Margin="0,0,10,20" Background="Red" Click="removeItemButton_Click" HorizontalAlignment="Right" Width="109" Height="37" VerticalAlignment="Bottom" />
+        <Button x:Name="summaryButton" Content="View Summary" Margin="0,70,10,0" VerticalAlignment="Top" Height="37" Background="LightBlue" Click="summaryButton_Click" HorizontalAlignment="Right" Width="109" />
     </Grid>
 </Window>

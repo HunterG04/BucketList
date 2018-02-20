@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Hunter\Desktop\BucketList\BucketList\App.xaml
-11151548125
+4-448530153
 
-91140798081
+13-154843142
 13738642453
-MainWindow.xaml;
+AddTaskWindow.xaml;CompleteTaskWindow.xaml;MainWindow.xaml;ViewTaskWindow.xaml;
 
 True
 

@@ -53,5 +53,10 @@ namespace BucketList
         {
 
         }
+
+        private void setMemoryButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

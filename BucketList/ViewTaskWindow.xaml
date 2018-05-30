@@ -7,13 +7,13 @@
         mc:Ignorable="d"
         Title="ViewTaskWindow" Height="300" Width="300">
     <Grid>
-        <Label x:Name="taskNameLabel" Content="Task Name" Margin="112,10,113,0" VerticalAlignment="Top"/>
+        <Label x:Name="taskNameLabel" Content="Task Name" Margin="112,10,48,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="132"/>
         <Label x:Name="dateCompletedLabel" Content="Date Completed: " HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top"/>
         <Label x:Name="costLabel" Content="Cost: " HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
         <Label x:Name="locationLabel" Content="Location: " HorizontalAlignment="Left" Margin="12,101,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.447,0.5"/>
         <Button x:Name="viewMemoriesButton" Content="View Memories" Margin="182,239,10,0" Click="viewMemoriesButton_Click" Height="20" VerticalAlignment="Top"/>
         <Label x:Name="descriptionLabel" Content="Description: " HorizontalAlignment="Left" Margin="12,132,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="setMemoryButton" Content="Set Memory Path" HorizontalAlignment="Left" Margin="10,239,0,0" VerticalAlignment="Top" Width="98"/>
+        <Button x:Name="setMemoryButton" Content="Set Memory Path" HorizontalAlignment="Left" Margin="10,239,0,0" VerticalAlignment="Top" Width="98" Click="setMemoryButton_Click"/>
 
     </Grid>
 </Window>

@@ -17,12 +17,17 @@ namespace BucketList
         public string dateCompleted { get; set; }
         public bool isComplete { get; set; }
 
-        public BucketListTask(string newName, string newDifficulty, string newDescription)
+        public BucketListTask(string newName, string newDifficulty, string newDescription, double newCost,
+                              string newLocation, string newMemoryPath, string newDateCompleted, bool newIsComplete)
         {
             name = newName;
             difficulty = newDifficulty;
             description = newDescription;
-            isComplete = false;
+            cost = newCost;
+            location = newLocation;
+            memoryPath = newMemoryPath;
+            dateCompleted = newDateCompleted;
+            isComplete = newIsComplete;
         }
 
         public void completeTask()

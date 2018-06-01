@@ -35,86 +35,79 @@ namespace BucketList
 
             this.DataContext = bucketListTasks;
 
-            List<int> completeIndexes = new List<int>();
-            completeIndexes = fillListFromDB();
-            updateCompleteTasks(completeIndexes);
+            fillListFromDB();
         }
 
-        private List<int> fillListFromDB()
+        private void fillListFromDB()
         {
             List<int> indexes = new List<int>();
 
             bucketListTasks.Clear();
 
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            SqlCommand cmd = new SqlCommand();
-
-            string query = "SELECT * FROM Tasks";
-            cmd.CommandText = query;
-            adapter.SelectCommand = cmd;
-
-            cmd.Connection = con;
-
-            DataSet ds = new DataSet();
-            adapter.Fill(ds);
-
             int i = 0;
-            foreach(DataTable table in ds.Tables)
+
+            while (i < 2)
             {
-                foreach(DataRow row in table.Rows)
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                SqlCommand cmd = new SqlCommand();
+
+                string query;
+                if (i == 0)
                 {
-                    bool complete = Convert.ToBoolean(row["isComplete"]);
-                    double cost = 0;
-                    string location = "N/A";
-                    string memoryPath = null;
-                    string dateCompleted = "N/A";
-
-                    if(row["cost"] != System.DBNull.Value)
-                    {
-                        cost = Convert.ToDouble(row["cost"]);
-                    }
-
-                    if(row["location"] != System.DBNull.Value)
-                    {
-                        location = row["location"].ToString();
-                    }
-
-                    if(row["memoryPath"] != System.DBNull.Value)
-                    {
-                        memoryPath = row["memoryPath"].ToString();
-                    }
-
-                    if (row["dateCompleted"] != System.DBNull.Value)
-                    {
-                        dateCompleted = row["dateCompleted"].ToString();
-                    }
-
-                    BucketListTask task = new BucketListTask(row["name"].ToString(), row["difficulty"].ToString(), row["description"].ToString(),
-                                                             cost, location, memoryPath,
-                                                             dateCompleted, complete);
-                    bucketListTasks.Add(task);
-
-                    if(task.isComplete)
-                    {
-                        indexes.Add(i);
-                    }
-
-                    i++;
+                    query = "SELECT * FROM Tasks "
+                                   + "WHERE isComplete = 0";
                 }
-            }
+                else
+                {
+                    query = "SELECT * FROM Tasks "
+                                    + " WHERE isComplete = 1";
+                }
+                cmd.CommandText = query;
+                adapter.SelectCommand = cmd;
 
-            return indexes;
-        }
+                cmd.Connection = con;
 
-        private void updateCompleteTasks(List<int> indexes)
-        {
-            for (int i = 0; i < indexes.Count; i++)
-            {
-                ListViewItem row = bucketListView.ItemContainerGenerator.ContainerFromIndex(indexes[i]) as ListViewItem;
-                row.Background = Brushes.LightGreen;
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
 
-                //Button b = (Button)sender;
-                //b.IsEnabled = false;
+                foreach (DataTable table in ds.Tables)
+                {
+                    foreach (DataRow row in table.Rows)
+                    {
+                        bool complete = Convert.ToBoolean(row["isComplete"]);
+                        double cost = 0;
+                        string location = "N/A";
+                        string memoryPath = null;
+                        string dateCompleted = "N/A";
+
+                        if (row["cost"] != System.DBNull.Value)
+                        {
+                            cost = Convert.ToDouble(row["cost"]);
+                        }
+
+                        if (row["location"] != System.DBNull.Value)
+                        {
+                            location = row["location"].ToString();
+                        }
+
+                        if (row["memoryPath"] != System.DBNull.Value)
+                        {
+                            memoryPath = row["memoryPath"].ToString();
+                        }
+
+                        if (row["dateCompleted"] != System.DBNull.Value)
+                        {
+                            dateCompleted = row["dateCompleted"].ToString();
+                        }
+
+                        BucketListTask task = new BucketListTask(row["name"].ToString(), row["difficulty"].ToString(), row["description"].ToString(),
+                                                                 cost, location, memoryPath,
+                                                                 dateCompleted, complete);
+                        bucketListTasks.Add(task);
+                    }
+                }
+
+                i++;
             }
         }
 

@@ -13,6 +13,14 @@ namespace BucketList
         private string connectionString;
         private SqlConnection con;
 
+        public DBConnector(string newConString)
+        {
+            con = new SqlConnection();
+
+            connectionString = newConString;
+            con.ConnectionString = connectionString;
+        }
+
         public void setConnectionString(string newConString)
         {
             connectionString = newConString;
@@ -58,6 +66,8 @@ namespace BucketList
 
             DataSet ds = new DataSet();
             adapter.Fill(ds);
+
+            con.Close();
 
             return ds;
         }

@@ -46,6 +46,10 @@ namespace BucketList
             con.Close();
         }
 
+        /*
+         * Call this function to run a select statement on the sql DB
+         * being used (from the connection string)
+         */
         public DataSet queryDB(string selectQuery)
         {
             try

@@ -19,9 +19,36 @@ namespace BucketList
     /// </summary>
     public partial class TaskSummaryWindow : Window
     {
-        public TaskSummaryWindow()
+        private Summary summary;
+
+        public TaskSummaryWindow(Summary newSummary)
         {
             InitializeComponent();
+
+            summary = newSummary;
+
+            adjustLabelColors();
+            setSummaryValues();
+        }
+
+        private void adjustLabelColors()
+        {
+            EasyLabel.Foreground = Brushes.Green;
+            MediumLabel.Foreground = Brushes.Yellow;
+            HardLabel.Foreground = Brushes.Red;
+        }
+
+        private void setSummaryValues()
+        {
+            // Set the summary labels for tasks completed and incomplete
+            TotalTasksLabel.Content = TotalTasksLabel.Content + summary.getTotalTasks().ToString();
+            CompleteTasksLabel.Content = CompleteTasksLabel.Content + summary.getTasksCompleted().ToString();
+            IncompleteTasksLabel.Content = IncompleteTasksLabel.Content + summary.getIncompleteTasks().ToString();
+
+            // Set the labels for easy, medium, and hard challenges completed
+            EasyLabel.Content = summary.getEasyTasks().ToString();
+            MediumLabel.Content = summary.getMediumTasks().ToString();
+            HardLabel.Content = summary.getHardTasks().ToString();
         }
     }
 }

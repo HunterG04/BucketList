@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace BucketList
 {
-    class DBConnector
+    public class DBConnector
     {
         private string connectionString;
         private SqlConnection con;

@@ -9,18 +9,25 @@ using System.Data.SqlClient;
 
 namespace BucketList
 {
-    class Summary
+    public class Summary
     {
         private int totalTasks;
         private int numberCompleteTasks;
         private int numberIncompleteTasks;
+        private int numberEasyTasksCompleted;
+        private int numberMediumTasksCompleted;
+        private int numberHardTasksCompleted;
         private DBConnector dbCon;
 
-        Summary(int newTotalTasks, int newNumberCompleteTasks, int newNumberIncompleteTasks, DBConnector newDBCon)
+        Summary(int newTotalTasks, int newNumberCompleteTasks, int newNumberIncompleteTasks, 
+                int newEasyTasksC, int newMediumTasksC, int newHardTasksC, DBConnector newDBCon)
         {
             totalTasks = newTotalTasks;
             numberCompleteTasks = newNumberCompleteTasks;
             numberIncompleteTasks = newNumberIncompleteTasks;
+            numberEasyTasksCompleted = newEasyTasksC;
+            numberMediumTasksCompleted = newMediumTasksC;
+            numberHardTasksCompleted = newHardTasksC;
             dbCon = newDBCon;
         }
 
@@ -37,6 +44,21 @@ namespace BucketList
         public int getIncompleteTasks()
         {
             return numberIncompleteTasks;
+        }
+
+        public int getEasyTasks()
+        {
+            return numberEasyTasksCompleted;
+        }
+
+        public int getMediumTasks()
+        {
+            return numberMediumTasksCompleted;
+        }
+
+        public int getHardTasks()
+        {
+            return numberHardTasksCompleted;
         }
 
         public void incrementTotalTasks()
@@ -64,9 +86,39 @@ namespace BucketList
             numberIncompleteTasks++;
         }
 
-        public void decrementinCompleteTasks()
+        public void decrementIncompleteTasks()
         {
             numberIncompleteTasks--;
+        }
+
+        public void incrementEasyTasks()
+        {
+            numberEasyTasksCompleted++;
+        }
+
+        public void incrementMediumTasks()
+        {
+            numberMediumTasksCompleted++;
+        }
+
+        public void incrementHardTasks()
+        {
+            numberHardTasksCompleted++;
+        }
+
+        public void decrementEasyTasks()
+        {
+            numberEasyTasksCompleted--;
+        }
+
+        public void decrementMediumTasks()
+        {
+            numberMediumTasksCompleted--;
+        }
+
+        public void decrementHardTasks()
+        {
+            numberHardTasksCompleted--;
         }
 
         private void updateDB(string query)

@@ -36,7 +36,19 @@ namespace BucketList
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             taskName = taskNameTextBox.Text;
-            taskDifficulty = difficultyTextBox.Text;
+
+            if(easyRadio.IsChecked == true)
+            {
+                taskDifficulty = "Easy";
+            }
+            else if(mediumRadio.IsChecked == true)
+            {
+                taskDifficulty = "Medium";
+            }
+            else
+            {
+                taskDifficulty = "Hard";
+            }
             taskDescription = descriptionTextBox.Text;
 
             DialogResult = true;

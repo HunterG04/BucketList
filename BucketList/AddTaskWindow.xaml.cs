@@ -49,6 +49,7 @@ namespace BucketList
             {
                 taskDifficulty = "Hard";
             }
+
             taskDescription = descriptionTextBox.Text;
 
             DialogResult = true;

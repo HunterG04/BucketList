@@ -58,6 +58,8 @@
     <Compile Include="CompleteTaskWindow.xaml.cs">
       <DependentUpon>CompleteTaskWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DBConnector.cs" />
+    <Compile Include="Summary.cs" />
     <Compile Include="ViewTaskWindow.xaml.cs">
       <DependentUpon>ViewTaskWindow.xaml</DependentUpon>
     </Compile>

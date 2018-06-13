@@ -24,14 +24,11 @@ namespace BucketList
     public partial class MainWindow : Window
     {
         private ObservableCollection<BucketListTask> bucketListTasks = new ObservableCollection<BucketListTask>();
-        private SqlConnection con = new SqlConnection();
-        private string conString = "Data Source=localhost; Initial Catalog=BucketList; Integrated Security=True";
+        private DBConnector dbCon = new DBConnector("Data Source=localhost; Initial Catalog=BucketList; Integrated Security=True");
 
         public MainWindow()
         {
             InitializeComponent();
-
-            con.ConnectionString = conString;
 
             this.DataContext = bucketListTasks;
 
@@ -40,17 +37,10 @@ namespace BucketList
 
         private void fillListFromDB()
         {
-            List<int> indexes = new List<int>();
-
             bucketListTasks.Clear();
 
-            int i = 0;
-
-            while (i < 2)
+            for(int i = 0; i < 2; i++)
             {
-                SqlDataAdapter adapter = new SqlDataAdapter();
-                SqlCommand cmd = new SqlCommand();
-
                 string query;
                 if (i == 0)
                 {
@@ -62,13 +52,8 @@ namespace BucketList
                     query = "SELECT * FROM Tasks "
                                     + " WHERE isComplete = 1";
                 }
-                cmd.CommandText = query;
-                adapter.SelectCommand = cmd;
 
-                cmd.Connection = con;
-
-                DataSet ds = new DataSet();
-                adapter.Fill(ds);
+                DataSet ds = dbCon.queryDB(query);
 
                 foreach (DataTable table in ds.Tables)
                 {
@@ -106,8 +91,6 @@ namespace BucketList
                         bucketListTasks.Add(task);
                     }
                 }
-
-                i++;
             }
         }
 
@@ -120,11 +103,7 @@ namespace BucketList
                 string query = "INSERT INTO TASKS (NAME, DIFFICULTY, DESCRIPTION) " +
                     "VALUES('" + addTaskWindow.taskName + "', '" + addTaskWindow.taskDifficulty + "', '" + addTaskWindow.taskDescription + "')";
 
-                SqlCommand cmd = new SqlCommand(query, con);
-
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
+                dbCon.executeCommand(query);
 
                 fillListFromDB();
             }
@@ -143,11 +122,7 @@ namespace BucketList
             string query = "DELETE FROM TASKS " +
                            "WHERE NAME = '" + tempName + "' " + "AND DESCRIPTION = '" + tempDescription + "'";
 
-            SqlCommand cmd = new SqlCommand(query, con);
-
-            con.Open();
-            cmd.ExecuteNonQuery();
-            con.Close();
+            dbCon.executeCommand(query);
         }
 
         private void summaryButton_Click(object sender, RoutedEventArgs e)
@@ -170,19 +145,16 @@ namespace BucketList
                 Button b = (Button)sender;
                 b.IsEnabled = false;
 
-                // TODO: Update item in database
                 BucketListTask task = bucketListTasks[index];
                 string query = "UPDATE TASKS " +
                                "SET COST = '" + task.cost.ToString() + "', LOCATION = '" + task.location + 
                                "', ISCOMPLETE = 1, DATECOMPLETED = '" + task.dateCompleted + "'" +
                                "WHERE NAME = '" + task.name + "' AND DESCRIPTION = '" + task.description + "' ";
 
-                SqlCommand cmd = new SqlCommand(query, con);
+                dbCon.executeCommand(query);
 
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
                 // TODO: Move completed item to end of list signifying it's completion
+
             }
         }
 

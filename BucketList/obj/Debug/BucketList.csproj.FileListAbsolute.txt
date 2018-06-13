@@ -18,3 +18,5 @@ C:\Users\Hunter\Desktop\BucketList\BucketList\obj\Debug\ViewTaskWindow.g.cs
 C:\Users\Hunter\Desktop\BucketList\BucketList\obj\Debug\ViewTaskWindow.baml
 C:\Users\Hunter\Desktop\BucketList\BucketList\obj\Debug\CompleteTaskWindow.g.cs
 C:\Users\Hunter\Desktop\BucketList\BucketList\obj\Debug\CompleteTaskWindow.baml
+C:\Users\Hunter\Desktop\BucketList\BucketList\obj\Debug\TaskSummaryWindow.g.cs
+C:\Users\Hunter\Desktop\BucketList\BucketList\obj\Debug\TaskSummaryWindow.baml

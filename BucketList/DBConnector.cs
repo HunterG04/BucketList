@@ -67,6 +67,7 @@ namespace BucketList
 
             cmd.CommandText = selectQuery;
             adapter.SelectCommand = cmd;
+            cmd.Connection = con;
 
             DataSet ds = new DataSet();
             adapter.Fill(ds);

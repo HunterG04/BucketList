@@ -4,19 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Hunter's Station\Desktop\BucketList\BucketList\BucketList\obj\Debug\
+C:\Users\Hunter\Desktop\BucketList\BucketList\obj\Debug\
 BucketList
 none
 false
 DEBUG;TRACE
-C:\Users\Hunter's Station\Desktop\BucketList\BucketList\BucketList\App.xaml
+C:\Users\Hunter\Desktop\BucketList\BucketList\App.xaml
 51260351001
 
-
-15-1874272497
-
+161605620181
 13738642453
 AddTaskWindow.xaml;CompleteTaskWindow.xaml;MainWindow.xaml;TaskSummaryWindow.xaml;ViewTaskWindow.xaml;
 
-False
+True
 
